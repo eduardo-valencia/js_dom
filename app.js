@@ -1,19 +1,5 @@
-const myHeading = document.getElementById("myHeading");
-const button = document.getElementById("changeHeader");
-const buttonColorInput = document.getElementById("headerColor");
-const headerResetButton = document.getElementById("headerReset");
+const purpleThings = document.getElementsByTagName('li');
 
-let defaultHeaderColor = 'red';
-
-button.addEventListener('click', () => {
-    if (buttonColorInput.value == '') {
-        myHeading.style.color = defaultHeaderColor;
-    }
-    else {
-        myHeading.style.color = buttonColorInput.value
-    }
-});
-
-headerResetButton.addEventListener('click', () => {
-    myHeading.style.color = defaultHeaderColor;
-});
+for (let i=0; i < purpleThings.length; i++) {
+    purpleThings[i].style.color = 'purple'
+};
