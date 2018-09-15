@@ -6,6 +6,7 @@ const toggleListBtn = document.querySelector('#toggle-list');
 const list = document.querySelector("ul")
 const addItemInput = document.querySelector("#addItemInput")
 const addItemBtn = document.querySelector("#addItemButton")
+const removeItemBtn = document.querySelector("#remove-item-button");
 
 for (let i=0; i < purpleThings.length; i++) {
     purpleThings[i].style.color = 'purple'
@@ -35,4 +36,10 @@ addItemBtn.addEventListener('click', () => {
     li.textContent = addItemInput.value;
     ul.appendChild(li);
     addItemInput.value = '';
+});
+
+removeItemBtn.addEventListener('click', () => {
+    let ul = document.querySelectorAll('ul')[0];
+    let li = document.querySelector('li:last-child');
+    ul.removeChild(li);
 });
