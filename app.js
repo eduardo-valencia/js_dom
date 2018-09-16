@@ -3,10 +3,10 @@ const changeHeadingButton = document.querySelector(".change-heading");
 const heading = document.querySelector('h1');
 const changeHeadingInput = document.querySelector("#change-heading-input");
 const toggleListBtn = document.querySelector('#toggle-list');
-const list = document.querySelector("ul")
-const addItemInput = document.querySelector("#addItemInput")
-const addItemBtn = document.querySelector("#addItemButton")
-const removeItemBtn = document.querySelector("#remove-item-button");
+const list = document.querySelector("ul");
+const addItemInput = document.querySelector("#addItemInput");
+const addItemBtn = document.querySelector("#addItemButton");
+const upBtn = document.querySelector(".Up");
 
 for (let i=0; i < purpleThings.length; i++) {
     purpleThings[i].style.color = 'purple'
@@ -33,13 +33,37 @@ toggleListBtn.addEventListener('click', () => {
 addItemBtn.addEventListener('click', () => {
     let li = document.createElement('li');
     let ul = document.querySelectorAll('ul')[0];
+    let button = document.createElement('button');
+
     li.textContent = addItemInput.value;
+    li.style.color = 'purple';
+    button.innerHTML = 'Remove';
+
+    li.appendChild(button);
     ul.appendChild(li);
+
     addItemInput.value = '';
 });
 
-removeItemBtn.addEventListener('click', () => {
-    let ul = document.querySelectorAll('ul')[0];
-    let li = document.querySelector('li:last-child');
-    ul.removeChild(li);
+list.addEventListener('click', (event) => {
+    if (event.target.tagName == 'BUTTON') {
+        if (event.target.className == 'remove') {
+            let button = event.target;
+            let li = button.parentNode;
+            let ul = li.parentNode;
+            ul.removeChild(li);
+        }
+        else if (event.target.className == 'Up') {
+            let li = event.target.parentNode;
+            let prevLi = li.previousElementSibling;
+            let ul = li.parentNode;
+            ul.insertBefore(li, prevLi);
+        }
+        else if (event.target.className == "down") {
+            let li = event.target.parentNode;
+            let twoElementsDown = li.nextElementSibling.nextElementSibling;
+            let ul = li.parentNode;
+            ul.insertBefore(li, twoElementsDown);
+        }
+    }
 });
